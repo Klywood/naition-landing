@@ -1,3 +1,15 @@
+const METRIKA_ID = 113666253;
+
+function reachGoal(goal) {
+    try {
+        if (typeof window.ym === 'function') {
+            window.ym(METRIKA_ID, 'reachGoal', goal);
+        }
+    } catch (error) {
+        // аналитика не должна ломать страницу
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const registrationSection = document.getElementById('registration');
     const form = document.getElementById('registration-form');
@@ -6,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     registerButtons.forEach((button) => {
         button.addEventListener('click', () => {
+            reachGoal('register_click');
+
             if (!registrationSection) {
                 return;
             }
@@ -14,9 +28,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    document.querySelectorAll('[data-goal]').forEach((link) => {
+        link.addEventListener('click', () => reachGoal(link.dataset.goal));
+    });
+
+    const stickyCta = document.getElementById('sticky-cta');
+    const hero = document.querySelector('.hero');
+
+    if (stickyCta && hero && registrationSection && 'IntersectionObserver' in window) {
+        let heroVisible = true;
+        let formVisible = false;
+        const update = () => stickyCta.classList.toggle('visible', !heroVisible && !formVisible);
+
+        new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; update(); }).observe(hero);
+        new IntersectionObserver(([entry]) => { formVisible = entry.isIntersecting; update(); }).observe(registrationSection);
+    }
+
     if (!form) {
         return;
     }
+
+    const purposeField = form.querySelector('textarea[name="purpose"]');
+    let formStarted = false;
+
+    form.addEventListener('focusin', () => {
+        if (!formStarted) {
+            formStarted = true;
+            reachGoal('form_start');
+        }
+    });
+
+    form.querySelectorAll('.chip').forEach((chip) => {
+        chip.addEventListener('click', () => {
+            if (purposeField instanceof HTMLTextAreaElement) {
+                purposeField.value = chip.dataset.purpose || '';
+                purposeField.focus();
+            }
+        });
+    });
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -51,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             form.reset();
+            reachGoal('form_submit');
         } catch (error) {
             if (message) {
                 message.textContent = error instanceof Error ? error.message : 'Не удалось отправить заявку.';
