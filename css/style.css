@@ -140,7 +140,6 @@ img {
 .injury-card,
 .instructor-card,
 .pricing-card,
-.program-module,
 .legal-block {
     background: var(--white);
     border-radius: 20px;
@@ -156,30 +155,46 @@ img {
 .feature-card h3,
 .injury-card h3,
 .instructor-card h3,
-.pricing-card h3,
-.program-module h3 {
+.pricing-card h3 {
     margin: 0 0 12px;
     color: var(--heading);
 }
 
-.program-list {
+.agenda {
     display: grid;
-    gap: 18px;
+    gap: 10px;
+    max-width: 760px;
 }
 
-.program-module {
+.agenda-item {
+    background: var(--white);
+    border-radius: 14px;
     border-left: 6px solid var(--blue);
+    box-shadow: var(--shadow);
 }
 
-.program-module:nth-child(2) { border-left-color: var(--mint); }
-.program-module:nth-child(3) { border-left-color: var(--pink); }
-.program-module:nth-child(4) { border-left-color: var(--peach); }
-.program-module:nth-child(5) { border-left-color: var(--blue); }
-.program-module:nth-child(6) { border-left-color: var(--mint); }
+.agenda-item:nth-child(2) { border-left-color: var(--mint); }
+.agenda-item:nth-child(3) { border-left-color: var(--pink); }
+.agenda-item:nth-child(4) { border-left-color: var(--peach); }
+.agenda-item:nth-child(6) { border-left-color: var(--mint); }
 
-.program-intro {
-    margin-bottom: 28px;
-    font-size: 1.05rem;
+.agenda-item summary {
+    padding: 16px 20px;
+    cursor: pointer;
+    color: var(--heading);
+    font-weight: 600;
+}
+
+.agenda-item p {
+    margin: 0;
+    padding: 0 20px 16px;
+}
+
+.agenda-time {
+    display: inline-block;
+    min-width: 120px;
+    color: #6c757d;
+    font-weight: 500;
 }
 
 .injury-grid {
