@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Первая помощь: практический курс для каждого</title>
     <meta name="description" content="Однодневный практический курс первой помощи в Москве: СЛР, кровотечения, переломы, ожоги. Малые группы до 14 человек, сертификат.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c8321f'/%3E%3Cpath d='M13 6h6v7h7v6h-7v7h-6v-7H6v-6h7z' fill='%23fff'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="css/style.css">
     <script src="api/visit.php" defer></script>
     <script src="js/main.js" defer></script>
@@ -144,30 +145,19 @@
             <div class="container">
                 <h2 class="section-title">Юридические аспекты</h2>
                 <p class="section-lead">
-                    Многие люди боятся помогать из-за страха юридической ответственности. На курсе
-                    мы отдельно разбираем, что говорит закон и как действовать правильно.
+                    Многие боятся помогать из-за страха ответственности. На курсе разберём, что говорит закон.
                 </p>
                 <div class="legal-block">
                     <h3>Добросовестный помощник</h3>
-                    <p>
-                        В России действует принцип добросовестного помощника: если вы помогаете пострадавшему
-                        в разумных пределах своих возможностей и без грубой неосторожности, закон защищает
-                        вас от необоснованных претензий.
-                    </p>
+                    <p>Если вы помогаете в разумных пределах и без грубой неосторожности, закон защищает вас от необоснованных претензий.</p>
                 </div>
                 <div class="legal-block">
                     <h3>Границы ответственности</h3>
-                    <p>
-                        Мы разбираем, какие действия считаются разумными, когда нужно дождаться медиков,
-                        и как фиксировать обстоятельства происшествия, если вы оказались свидетелем или участником помощи.
-                    </p>
+                    <p>Какие действия считаются разумными, когда нужно дождаться медиков и как зафиксировать обстоятельства происшествия.</p>
                 </div>
                 <div class="legal-block">
-                    <h3>Документирование и вызов служб</h3>
-                    <p>
-                        Как правильно передать информацию диспетчеру, что сообщить медикам по прибытии и
-                        какие данные важно сохранить для дальнейшего разбирательства или страхового случая.
-                    </p>
+                    <h3>Вызов служб и документы</h3>
+                    <p>Что сообщить диспетчеру и медикам и какие данные сохранить для разбирательства или страхового случая.</p>
                 </div>
             </div>
         </section>
@@ -221,11 +211,11 @@
             <div class="container">
                 <h2 class="section-title">Тарифы</h2>
                 <p class="section-lead">
-                    Выберите формат участия. Во все тарифы входят материалы, сертификат и доступ к памятке после курса.
+                    Во все тарифы входят материалы, сертификат и памятка после курса.
                 </p>
                 <div class="pricing-grid">
                     <article class="pricing-card">
-                        <h3>Базовый</h3>
+                        <h3 data-tariff>Базовый</h3>
                         <div class="price">4 900 ₽</div>
                         <ul class="pricing-list">
                             <li>Участие в полном однодневном курсе</li>
@@ -236,7 +226,7 @@
                     </article>
                     <article class="pricing-card featured">
                         <span class="pricing-badge">Рекомендуем</span>
-                        <h3>Расширенный</h3>
+                        <h3 data-tariff>Расширенный</h3>
                         <div class="price">7 900 ₽</div>
                         <ul class="pricing-list">
                             <li>Всё из базового тарифа</li>
@@ -246,7 +236,7 @@
                         <button type="button" class="btn btn-register">Записаться</button>
                     </article>
                     <article class="pricing-card">
-                        <h3>Корпоративный</h3>
+                        <h3 data-tariff>Корпоративный</h3>
                         <div class="price">12 900 ₽</div>
                         <ul class="pricing-list">
                             <li>Индивидуальный разбор рисков профессии</li>
@@ -263,8 +253,9 @@
             <div class="container">
                 <div class="registration-panel">
                     <h2 class="section-title">Записаться на курс</h2>
+                    <p class="selected-tariff" id="selected-tariff" hidden></p>
                     <p class="section-lead">
-                        Оставьте заявку, и мы свяжемся с вами, чтобы подтвердить место и ответить на вопросы.
+                        Оставьте заявку, и мы свяжемся с вами, чтобы подтвердить место.
                     </p>
                     <form class="form-grid" id="registration-form" action="api/submit.php" method="post">
                         <label>

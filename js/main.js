@@ -20,6 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             reachGoal('register_click');
 
+            const card = button.closest('.pricing-card');
+            const tariff = card ? card.querySelector('[data-tariff]') : null;
+            const price = card ? card.querySelector('.price') : null;
+            const tariffNote = document.getElementById('selected-tariff');
+
+            if (tariff && tariffNote) {
+                tariffNote.textContent = 'Выбран тариф: ' + tariff.textContent.trim()
+                    + (price ? ' · ' + price.textContent.trim() : '');
+                tariffNote.hidden = false;
+            }
+
             if (!registrationSection) {
                 return;
             }
@@ -75,6 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (submitButton instanceof HTMLButtonElement) {
             submitButton.disabled = true;
+            submitButton.dataset.label = submitButton.textContent || '';
+            submitButton.textContent = 'Отправляем…';
         }
 
         if (message) {
@@ -97,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (message) {
                 message.textContent = 'Заявка успешно отправлена. Мы свяжемся с вами в ближайшее время.';
                 message.className = 'form-message success';
+                message.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
 
             form.reset();
@@ -109,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } finally {
             if (submitButton instanceof HTMLButtonElement) {
                 submitButton.disabled = false;
+                submitButton.textContent = submitButton.dataset.label || 'Отправить заявку';
             }
         }
     });
